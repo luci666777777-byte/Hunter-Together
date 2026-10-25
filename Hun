@@ -1,5 +1,5 @@
 --// ============================================================
---//  RELWX HUB  |  UI v7 + Game Features
+--//  JOD HUB  |  UI v7 + Game Features
 --//  - ปรับขนาดตามหน้าจออัตโนมัติ (+ ปรับเพิ่ม/ลดเองได้ในตั้งค่า)
 --//  - ทุกอย่างผูกกับ Config และเซฟอัตโนมัติ
 --//  - เพิ่มฟังก์ชันใหม่: ดูหัวข้อ "ADD YOUR FUNCTIONS"
@@ -43,7 +43,7 @@ local SOUND_FALLBACK = "rbxasset://sounds/electronicpingshort.wav" -- ใช้�
 -- CONFIG  (Auto Save / Auto Load)
 --==================================================
 
-local CONFIG_FILE = "RELWX_HUB_Config.json"
+local CONFIG_FILE = "JOD_HUB_Config.json"
 
 local Defaults = {
     -- สี
@@ -572,7 +572,7 @@ end
 
 pcall(function()
     for _, v in ipairs(PlayerGui:GetChildren()) do
-        if v.Name == "RELWX_UI" or v.Name == "RELWX_Floating" or v.Name == "RELWX_Stats"
+        if v.Name == "JOD_UI" or v.Name == "JOD_Floating" or v.Name == "JOD_Stats"
             or v.Name == "TwoSki_RideAPet_Floating" then
             v:Destroy()
         end
@@ -580,7 +580,7 @@ pcall(function()
 end)
 
 local Screen = New("ScreenGui", {
-    Name = "RELWX_UI",
+    Name = "JOD_UI",
     ResetOnSpawn = false,
     IgnoreGuiInset = true,
     DisplayOrder = 999998,
@@ -6012,9 +6012,9 @@ local Glow = New("Frame", {
 Corner(Glow, 15)
 local GlowStroke = Stroke(Glow, RGB(145, 145, 145), 3, 0.2)
 
-local RX = New("TextButton", {
+local JO = New("TextButton", {
     Size = UDim2.fromScale(1, 1),
-    Text = "RX",
+    Text = "JO",
     TextSize = 15,
     Font = FNT.B,
     BorderSizePixel = 0,
@@ -6022,7 +6022,7 @@ local RX = New("TextButton", {
     Active = true,
 }, Float)
 Corner(RX, 13)
-local RXStroke = Stroke(RX, RGB(255, 255, 255), 2, 0.05)
+local RXStroke = Stroke(JO, RGB(255, 255, 255), 2, 0.05)
 local RXGrad = New("UIGradient", {
     Transparency = NumberSequence.new({
         NumberSequenceKeypoint.new(0, 0),
@@ -6054,7 +6054,7 @@ FloatApplyPosition = function()
     Float.Position = UDim2.fromScale(Config.FloatX, Config.FloatY)
 end
 
-MakeDraggable(RX, Float, "FloatX", "FloatY", function()
+MakeDraggable(JO, Float, "FloatX", "FloatY", function()
     SetWindow(not Config.WindowVisible)
 end)
 
@@ -6074,4 +6074,4 @@ if not LoadedFromFile then
     SaveConfig(true) -- สร้างไฟล์ Config ครั้งแรก
 end
 
-print("[RELWX] UI v7 Loaded" .. (LoadedFromFile and " (Config loaded)" or " (new Config)"))
+print("[JOD] UI v7 Loaded" .. (LoadedFromFile and " (Config loaded)" or " (new Config)"))
