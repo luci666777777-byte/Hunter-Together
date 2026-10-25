@@ -868,7 +868,7 @@ end
 
 local AnimToken = 0
 
--- เปิด: บินออกจากปุ่ม RX แล้วขยายเป็นหน้าต่าง + วงคลื่น
+-- เปิด: บินออกจากปุ่ม JO แล้วขยายเป็นหน้าต่าง + วงคลื่น
 local function PlayOpen()
     AnimToken = AnimToken + 1
     local token = AnimToken
