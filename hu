@@ -1,5 +1,5 @@
 --// ============================================================
---//  RELWX HUB  |  UI v7 + Game Features
+--//  JOD HUB  |  UI v7 + Game Features
 --//  - ปรับขนาดตามหน้าจออัตโนมัติ (+ ปรับเพิ่ม/ลดเองได้ในตั้งค่า)
 --//  - ทุกอย่างผูกกับ Config และเซฟอัตโนมัติ
 --//  - เพิ่มฟังก์ชันใหม่: ดูหัวข้อ "ADD YOUR FUNCTIONS"
@@ -43,7 +43,7 @@ local SOUND_FALLBACK = "rbxasset://sounds/electronicpingshort.wav" -- ใช้�
 -- CONFIG  (Auto Save / Auto Load)
 --==================================================
 
-local CONFIG_FILE = "RELWX_HUB_Config.json"
+local CONFIG_FILE = "JOD_HUB_Config.json"
 
 local Defaults = {
     -- สี
@@ -572,7 +572,7 @@ end
 
 pcall(function()
     for _, v in ipairs(PlayerGui:GetChildren()) do
-        if v.Name == "RELWX_UI" or v.Name == "RELWX_Floating" or v.Name == "RELWX_Stats"
+        if v.Name == "RELWX_UI" or v.Name == "JOD_Floating" or v.Name == "JOD_Stats"
             or v.Name == "TwoSki_RideAPet_Floating" then
             v:Destroy()
         end
@@ -868,7 +868,7 @@ end
 
 local AnimToken = 0
 
--- เปิด: บินออกจากปุ่ม RX แล้วขยายเป็นหน้าต่าง + วงคลื่น
+-- เปิด: บินออกจากปุ่ม JO แล้วขยายเป็นหน้าต่าง + วงคลื่น
 local function PlayOpen()
     AnimToken = AnimToken + 1
     local token = AnimToken
@@ -905,7 +905,7 @@ local function PlayOpen()
     end)
 end
 
--- ปิด: ตัวหน้าต่างพองเล็กน้อย -> ยุบเป็นเส้นแสง -> หดเป็นจุด + ประกายไฟ -> บินเข้าปุ่ม RX แล้วปล่อยคลื่น
+-- ปิด: ตัวหน้าต่างพองเล็กน้อย -> ยุบเป็นเส้นแสง -> หดเป็นจุด + ประกายไฟ -> บินเข้าปุ่ม JO แล้วปล่อยคลื่น
 local function PlayClose()
     AnimToken = AnimToken + 1
     local token = AnimToken
@@ -951,7 +951,7 @@ local function PlayClose()
         FxSparks(cx, cy, w, 28, 150 * math.max(s0, 0.6))
         Tween(beam, 0.26, { Size = UDim2.fromOffset(18, 18) }, Enum.EasingStyle.Quint, Enum.EasingDirection.In)
 
-        -- 4) จุดแสงบินเข้าปุ่ม RX
+        -- 4) จุดแสงบินเข้าปุ่ม JO
         task.delay(0.28, function()
             local fx, fy = FloatCenter()
             Tween(beam, 0.36, {
@@ -1135,7 +1135,7 @@ end
 --==================================================
 
 local StatsGui = New("ScreenGui", {
-    Name = "RELWX_Stats",
+    Name = "JOD_Stats",
     ResetOnSpawn = false,
     DisplayOrder = 999999,
     IgnoreGuiInset = true,
@@ -2239,7 +2239,7 @@ local function ColorRow(page, title, key)
     end)
 end
 
--- ธีมสำเร็จรูป: แตะครั้งเดียวเปลี่ยนทั้ง UI + ปุ่ม RX (เซฟอัตโนมัติ)
+-- ธีมสำเร็จรูป: แตะครั้งเดียวเปลี่ยนทั้ง UI + ปุ่ม JO (เซฟอัตโนมัติ)
 local ThemePresets = {
     { "Graphite", "#C9CBD3", "#0A0A0C", "#232328" },
     { "Violet", "#8B5CF6", "#09090D", "#1C1C26" },
@@ -5854,7 +5854,7 @@ end)()
 -- SETTINGS
 --==================================================
 
-local Settings = MakePage("Settings", "ตั้งค่า", "ปรับแต่งหน้าตา RELWX  •  เปลี่ยนแล้วเซฟทันที")
+local Settings = MakePage("Settings", "ตั้งค่า", "ปรับแต่งหน้าตา JOD  •  เปลี่ยนแล้วเซฟทันที")
 
 Section(Settings, "ระบบ")
 
@@ -5894,10 +5894,10 @@ ColorRow(Settings, "สีหลัก UI", "UIAccentColor")
 ColorRow(Settings, "สีพื้นหลัง UI", "UIBackgroundColor")
 ColorRow(Settings, "สีปุ่ม UI", "UIButtonColor")
 
-Section(Settings, "ปุ่มลอย RX")
-ColorRow(Settings, "สีปุ่ม RX", "FloatingButtonColor")
-ColorRow(Settings, "สีขอบ RX", "FloatingBorderColor")
-ColorRow(Settings, "สี Glow RX", "FloatingGlowColor")
+Section(Settings, "ปุ่มลอย JO")
+ColorRow(Settings, "สีปุ่ม JO", "FloatingButtonColor")
+ColorRow(Settings, "สีขอบ JO", "FloatingBorderColor")
+ColorRow(Settings, "สี Glow JO", "FloatingGlowColor")
 
 Section(Settings, "Config")
 
@@ -5985,7 +5985,7 @@ CatGroup("ตั้งค่า")
 Category("ตั้งค่า", "Settings", "ring")
 
 --==================================================
--- FLOATING RX BUTTON
+-- FLOATING JO BUTTON
 --==================================================
 
 local ToggleGui = New("ScreenGui", {
@@ -6054,7 +6054,7 @@ FloatApplyPosition = function()
     Float.Position = UDim2.fromScale(Config.FloatX, Config.FloatY)
 end
 
-MakeDraggable(RX, Float, "FloatX", "FloatY", function()
+MakeDraggable(JO, Float, "FloatX", "FloatY", function()
     SetWindow(not Config.WindowVisible)
 end)
 
@@ -6074,4 +6074,4 @@ if not LoadedFromFile then
     SaveConfig(true) -- สร้างไฟล์ Config ครั้งแรก
 end
 
-print("[RELWX] UI v7 Loaded" .. (LoadedFromFile and " (Config loaded)" or " (new Config)"))
+print("[JOD] UI v7 Loaded" .. (LoadedFromFile and " (Config loaded)" or " (new Config)"))
